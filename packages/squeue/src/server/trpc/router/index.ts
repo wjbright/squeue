@@ -1,10 +1,10 @@
 // src/server/router/index.ts
 import { t } from "../trpc";
 
-import { exampleRouter } from "./example";
+import { squeuesRouter } from "./squeues";
 
 export const appRouter = t.router({
-  example: exampleRouter,
+  squeues: squeuesRouter,
 });
 
 // export type definition of API

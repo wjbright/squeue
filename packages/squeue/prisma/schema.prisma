@@ -24,6 +24,7 @@ model Squeue {
     path     String
     delay    String
     retry    String?
+    data     Json?
 }
 
 model Project {
