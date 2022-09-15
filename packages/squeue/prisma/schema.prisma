@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider             = "mysql"
+    url                  = env("DATABASE_URL")
+    referentialIntegrity = "prisma"
+}
+
+generator js {
+    provider        = "prisma-client-js"
+    previewFeatures = ["referentialIntegrity"]
+}
+
+model Squeue {
+    id       Int     @id @default(autoincrement())
+    squeueId Int     @unique
+    project  Project @relation(fields: [squeueId], references: [id])
+    baseUrl  String
+    path     String
+    delay    String
+    retry    String?
+}
+
+model Project {
+    id        Int      @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    title     String   @db.VarChar(255)
+    projectId String
+    squeue    Squeue?
+
+    @@index([projectId])
+}
+
+model Example {
+    id String @id @default(cuid())
+}

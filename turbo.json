@@ -1,0 +1,21 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build", "$NODE_ENV"],
+      "outputs": ["dist/**", ".next/**"]
+    },
+    "lint": {
+      "outputs": []
+    },
+    "dev": {
+      "dependsOn": ["$NODE_ENV"],
+      "cache": false
+    }
+  },
+  "globalDependencies": [
+    ".env",
+    "tsconfig.json",
+    "$NODE_ENV"
+  ]
+}
